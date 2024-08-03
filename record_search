@@ -1,0 +1,23 @@
+import pickle
+def SEARCH_Book():
+    with open("Book.dat","rb")as f:
+        au=input("enter the author name to search")
+        try:
+            while True:
+                x=pickle.load(f)
+                for i,j in x.items():
+                    if j[1]==au:
+                        print(x)
+        except EOFError:
+            pass
+#main block
+with open("Book.dat","wb") as f:
+     n=int(input("how many records to store into binary file"))
+     for i in range(n):
+         d={}
+         bid=int(input("enter bookid"))
+         bn=input("enter bookname")
+         au=input("enter author name")
+         d[bid]=[bn,au]
+         pickle.dump(d,f)
+SEARCH_Book()
